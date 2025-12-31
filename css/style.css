@@ -1,0 +1,187 @@
+/* Custom CSS for IP Lookup Tool */
+
+/* Dark mode transitions */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.dark ::-webkit-scrollbar-track {
+    background: #374151;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #6b7280;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+/* Loading animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+/* Pulse animation for buttons */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* IP info card styling */
+.ip-info-item {
+    @apply flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700 last:border-b-0;
+}
+
+.ip-info-label {
+    @apply text-sm font-medium text-gray-600 dark:text-gray-400;
+}
+
+.ip-info-value {
+    @apply text-sm text-gray-900 dark:text-white font-mono;
+}
+
+/* Security badge styling */
+.security-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.security-safe {
+    @apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200;
+}
+
+.security-warning {
+    @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200;
+}
+
+.security-danger {
+    @apply bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200;
+}
+
+/* Map container */
+#map {
+    height: 256px;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .hero-title {
+        @apply text-3xl;
+    }
+    
+    .hero-description {
+        @apply text-lg;
+    }
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+    @apply outline-none ring-2 ring-blue-500 ring-offset-2 ring-offset-white dark:ring-offset-gray-900;
+}
+
+/* Hover effects */
+.hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Copy button styling */
+.copy-btn {
+    @apply p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors;
+}
+
+.copy-btn.copied {
+    @apply text-green-600 dark:text-green-400;
+}
+
+/* Toast notification */
+.toast {
+    @apply fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg z-50 transform translate-y-full transition-transform duration-300;
+}
+
+.toast.show {
+    @apply translate-y-0;
+}
+
+/* Input validation styles */
+.input-valid {
+    @apply border-green-500 ring-green-500;
+}
+
+.input-invalid {
+    @apply border-red-500 ring-red-500;
+}
+
+/* Skeleton loading */
+.skeleton {
+    @apply bg-gray-200 dark:bg-gray-700 rounded animate-pulse;
+}
+
+.skeleton-line {
+    @apply h-4 mb-2;
+}
+
+.skeleton-line:last-child {
+    @apply mb-0;
+}
+
+/* Feature highlights */
+.feature-highlight {
+    @apply bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-l-4 border-blue-500;
+}
+
+/* Stats grid */
+.stats-grid {
+    @apply grid grid-cols-2 md:grid-cols-4 gap-4;
+}
+
+.stat-card {
+    @apply bg-white dark:bg-gray-800 rounded-lg p-4 text-center hover-lift;
+}
+
+.stat-number {
+    @apply text-2xl font-bold text-blue-600 dark:text-blue-400;
+}
+
+.stat-label {
+    @apply text-sm text-gray-600 dark:text-gray-400 mt-1;
+}
