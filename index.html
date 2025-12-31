@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Lookup Tool - Free IP Geolocation & Information Checker</title>
+    <meta name="description" content="Free IP lookup tool to check IP address location, ISP, ASN, and detect VPN/proxy. Get detailed geolocation data with map visualization.">
+    <meta name="keywords" content="IP lookup, IP geolocation, IP address, IP checker, location finder, ISP lookup, VPN detection">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="IP Lookup Tool - Free IP Geolocation & Information Checker">
+    <meta property="og:description" content="Free IP lookup tool to check IP address location, ISP, ASN, and detect VPN/proxy. Get detailed geolocation data with map visualization.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Leaflet CSS for Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "IP Lookup Tool",
+        "description": "Free IP lookup tool to check IP address location, ISP, ASN, and detect VPN/proxy",
+        "url": "",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any"
+    }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <!-- Header -->
+    <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-blue-600 dark:text-blue-400">IP Lookup</h1>
+                    </div>
+                    <div class="hidden md:block ml-10">
+                        <div class="flex items-baseline space-x-4">
+                            <a href="index.html" class="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                            <a href="tools.html" class="text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Tools</a>
+                            <a href="blog.html" class="text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Blog</a>
+                            <a href="about.html" class="text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <!-- Demo Mode Toggle -->
+                    <button id="demoModeToggle" class="px-3 py-1 text-xs bg-yellow-500 text-white rounded hover:bg-yellow-600 transition-colors">
+                        Demo Mode: OFF
+                    </button>
+                    <!-- Dark Mode Toggle -->
+                    <button id="darkModeToggle" class="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                        </svg>
+                        <svg class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Hero Section -->
+        <section class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                IP Address Information Checker
+            </h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+                Get detailed IP geolocation data, ISP information, and security insights
+            </p>
+            
+            <!-- IP Lookup Form -->
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                    <form id="ipLookupForm" class="space-y-4">
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <input 
+                                type="text" 
+                                id="ipInput" 
+                                placeholder="Enter IP address (e.g., 8.8.8.8) or leave empty for your IP"
+                                class="flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                            >
+                            <button 
+                                type="submit" 
+                                class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
+                            >
+                                Lookup IP
+                            </button>
+                        </div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">
+                            Supports IPv4 and IPv6 addresses
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="hidden">
+            <div class="text-center py-12">
+                <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                <p class="mt-4 text-gray-600 dark:text-gray-300">Looking up IP information...</p>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" class="hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- IP Information Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">IP Information</h3>
+                    <div id="ipInfo" class="space-y-3">
+                        <!-- IP info will be populated here -->
+                    </div>
+                </div>
+                
+                <!-- Map Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Location Map</h3>
+                    <div id="map" class="h-64 rounded-lg"></div>
+                </div>
+            </div>
+
+            <!-- Additional Information -->
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Network Info -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Network Information</h4>
+                    <div id="networkInfo" class="space-y-2">
+                        <!-- Network info will be populated here -->
+                    </div>
+                </div>
+                
+                <!-- Security Info -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Security Analysis</h4>
+                    <div id="securityInfo" class="space-y-2">
+                        <!-- Security info will be populated here -->
+                    </div>
+                </div>
+                
+                <!-- Timezone Info -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Timezone</h4>
+                    <div id="timezoneInfo" class="space-y-2">
+                        <!-- Timezone info will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="mt-8 flex flex-wrap gap-4 justify-center">
+                <button id="shareBtn" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                    Share Results
+                </button>
+                <button id="exportBtn" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+                    Export to CSV
+                </button>
+                <button id="newLookupBtn" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
+                    New Lookup
+                </button>
+            </div>
+        </div>
+
+        <!-- Error Section -->
+        <div id="errorSection" class="hidden">
+            <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h3 class="text-sm font-medium text-red-800 dark:text-red-200">Error</h3>
+                        <div class="mt-2 text-sm text-red-700 dark:text-red-300">
+                            <p id="errorMessage">Something went wrong. Please try again.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Tools Section -->
+    <section id="tools" class="bg-gray-50 dark:bg-gray-900 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Network Diagnostic Tools</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">Comprehensive suite of free network tools for diagnostics and analysis</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 hover-lift">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 bg-blue-100 dark:bg-blue-900 rounded-lg">
+                            <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                            </svg>
+                        </div>
+                        <h3 class="ml-3 text-xl font-semibold text-gray-900 dark:text-white">DNS Lookup</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Query DNS records for any domain name including A, AAAA, MX, TXT, and more.</p>
+                    <button class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">Lookup DNS</button>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 hover-lift">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 bg-green-100 dark:bg-green-900 rounded-lg">
+                            <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="ml-3 text-xl font-semibold text-gray-900 dark:text-white">Ping Test</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Test connectivity and measure latency to any host or IP address.</p>
+                    <button class="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">Start Ping</button>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 hover-lift">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 bg-purple-100 dark:bg-purple-900 rounded-lg">
+                            <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                            </svg>
+                        </div>
+                        <h3 class="ml-3 text-xl font-semibold text-gray-900 dark:text-white">Traceroute</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Trace the network path to any destination and identify routing hops.</p>
+                    <button class="w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">Trace Route</button>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 hover-lift">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 bg-red-100 dark:bg-red-900 rounded-lg">
+                            <svg class="w-6 h-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="ml-3 text-xl font-semibold text-gray-900 dark:text-white">Port Checker</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Check if specific ports are open or closed on any host or IP address.</p>
+                    <button class="w-full px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">Check Port</button>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 hover-lift">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 bg-yellow-100 dark:bg-yellow-900 rounded-lg">
+                            <svg class="w-6 h-6 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="ml-3 text-xl font-semibold text-gray-900 dark:text-white">User-Agent Info</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Analyze your browser's user-agent string and get detailed browser information.</p>
+                    <button class="w-full px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors">Analyze UA</button>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 hover-lift">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 bg-indigo-100 dark:bg-indigo-900 rounded-lg">
+                            <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="ml-3 text-xl font-semibold text-gray-900 dark:text-white">WHOIS Lookup</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Get domain registration information including owner, registrar, and dates.</p>
+                    <button class="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">WHOIS Lookup</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="bg-white dark:bg-gray-800 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Network & IP Address Blog</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">Expert insights on IP geolocation, network security, and digital privacy</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <article class="bg-gray-50 dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden hover-lift">
+                    <div class="h-48 bg-gradient-to-br from-green-400 to-blue-500"></div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 px-2 py-1 rounded text-xs font-medium">Guide</span>
+                            <span class="ml-auto text-sm text-gray-500 dark:text-gray-400">3 min read</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">IPv4 vs IPv6: What's the Difference?</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Learn the key differences between IPv4 and IPv6, and understand why the transition to IPv6 is crucial.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Dec 15, 2024</span>
+                            <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="bg-gray-50 dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden hover-lift">
+                    <div class="h-48 bg-gradient-to-br from-purple-400 to-pink-500"></div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 px-2 py-1 rounded text-xs font-medium">Security</span>
+                            <span class="ml-auto text-sm text-gray-500 dark:text-gray-400">4 min read</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">How to Detect VPN and Proxy Connections</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Discover the techniques used to identify VPN and proxy connections through IP address analysis.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Dec 10, 2024</span>
+                            <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="bg-gray-50 dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden hover-lift">
+                    <div class="h-48 bg-gradient-to-br from-yellow-400 to-orange-500"></div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200 px-2 py-1 rounded text-xs font-medium">Tutorial</span>
+                            <span class="ml-auto text-sm text-gray-500 dark:text-gray-400">6 min read</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Building Your Own IP Geolocation Service</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Step-by-step tutorial on creating a custom IP geolocation service using open data sources.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Dec 5, 2024</span>
+                            <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-gray-50 dark:bg-gray-900 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">About IP Lookup Tool</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">We're dedicated to providing free, accurate, and privacy-focused IP geolocation tools</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Our Mission</h3>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">At IP Lookup Tool, we believe that access to network information should be free, fast, and reliable. Our mission is to democratize IP geolocation data and network analysis tools.</p>
+                    <div class="grid grid-cols-3 gap-4 mt-8">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-blue-600 dark:text-blue-400">10M+</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-300">IP Lookups</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-blue-600 dark:text-blue-400">150+</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-300">Countries</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-blue-600 dark:text-blue-400">99.9%</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-300">Uptime</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg p-8 text-white">
+                    <h4 class="text-2xl font-bold mb-4">Why Choose Us?</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Completely free with no hidden costs</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>No registration or account required</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Privacy-first approach with no tracking</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Lightning-fast response times</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-white dark:bg-gray-800 py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Contact Us</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">Get in touch with our team for support, feedback, or inquiries</p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg shadow-lg p-8">
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">First Name</label>
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:text-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Last Name</label>
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:text-white">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
+                        <input type="email" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                        <textarea rows="5" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:text-white"></textarea>
+                    </div>
+                    <button type="submit" class="w-full px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Documentation Section -->
+    <section id="api" class="bg-gray-50 dark:bg-gray-900 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">API Documentation</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">Integrate IP geolocation data into your applications</p>
+            </div>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+                <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-6">API Overview</h3>
+                <div class="bg-gray-900 rounded-lg p-4 mb-4">
+                    <code class="text-green-400">GET</code>
+                    <code class="text-blue-400 ml-2">https://api.iplookup.com/v1/ip/{ip_address}</code>
+                </div>
+                <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto mb-6">
+                    <pre class="text-sm text-gray-300"><code>{
+  "ip": "8.8.8.8",
+  "country": "United States",
+  "country_code": "US",
+  "region": "California",
+  "city": "Mountain View",
+  "latitude": 37.4056,
+  "longitude": -122.0775,
+  "timezone": "America/Los_Angeles",
+  "isp": "Google LLC",
+  "asn": "AS15169 Google LLC",
+  "proxy": false,
+  "hosting": true
+}</code></pre>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                        <h4 class="font-medium text-gray-900 dark:text-white mb-2">JavaScript</h4>
+                        <code class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">npm install iplookup-api</code>
+                    </div>
+                    <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                        <h4 class="font-medium text-gray-900 dark:text-white mb-2">Python</h4>
+                        <code class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">pip install iplookup-api</code>
+                    </div>
+                    <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                        <h4 class="font-medium text-gray-900 dark:text-white mb-2">PHP</h4>
+                        <code class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">composer require iplookup/api</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Policy Section -->
+    <section id="privacy" class="bg-white dark:bg-gray-800 py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Privacy Policy</h2>
+            <div class="prose prose-lg dark:prose-invert max-w-none">
+                <p class="text-gray-600 dark:text-gray-300">At IP Lookup Tool, we are committed to protecting your privacy and ensuring the security of your personal information.</p>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Information We Collect</h3>
+                <p class="text-gray-600 dark:text-gray-300">We collect only the information necessary to provide our services:</p>
+                <ul class="list-disc pl-6 text-gray-600 dark:text-gray-300">
+                    <li>IP addresses you choose to lookup</li>
+                    <li>Browser type and version</li>
+                    <li>Device information</li>
+                    <li>Usage patterns and analytics (anonymized)</li>
+                </ul>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">What We Don't Collect</h3>
+                <ul class="list-disc pl-6 text-gray-600 dark:text-gray-300">
+                    <li>Personal identification information</li>
+                    <li>IP lookup history</li>
+                    <li>Location history</li>
+                    <li>Files or documents from your device</li>
+                </ul>
+                <p class="text-gray-600 dark:text-gray-300 mt-6">We never sell your data to third parties and are fully GDPR compliant.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terms of Service Section -->
+    <section id="terms" class="bg-gray-50 dark:bg-gray-900 py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Terms of Service</h2>
+            <div class="prose prose-lg dark:prose-invert max-w-none">
+                <p class="text-gray-600 dark:text-gray-300">Welcome to IP Lookup Tool. These Terms of Service govern your use of our IP geolocation and network analysis services.</p>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Acceptable Use</h3>
+                <p class="text-gray-600 dark:text-gray-300">You MAY use our service to:</p>
+                <ul class="list-disc pl-6 text-gray-600 dark:text-gray-300">
+                    <li>Lookup IP addresses for legitimate purposes</li>
+                    <li>Analyze network information for security research</li>
+                    <li>Educational and research purposes</li>
+                    <li>Personal use and curiosity</li>
+                </ul>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Restrictions</h3>
+                <p class="text-gray-600 dark:text-gray-300">You MUST NOT use our service to:</p>
+                <ul class="list-disc pl-6 text-gray-600 dark:text-gray-300">
+                    <li>Automate access without permission</li>
+                    <li>Exceed reasonable usage limits</li>
+                    <li>Use for illegal activities</li>
+                    <li>Harass, stalk, or harm others</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cookie Policy Section -->
+    <section id="cookies" class="bg-white dark:bg-gray-800 py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Cookie Policy</h2>
+            <div class="prose prose-lg dark:prose-invert max-w-none">
+                <p class="text-gray-600 dark:text-gray-300">This Cookie Policy explains how IP Lookup Tool uses cookies and how you can manage your preferences.</p>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Types of Cookies We Use</h3>
+                <div class="space-y-4">
+                    <div class="border-l-4 border-green-500 pl-4">
+                        <h4 class="font-medium text-gray-900 dark:text-white">Essential Cookies</h4>
+                        <p class="text-gray-600 dark:text-gray-300">Necessary for the website to function (dark mode preference, session management).</p>
+                    </div>
+                    <div class="border-l-4 border-blue-500 pl-4">
+                        <h4 class="font-medium text-gray-900 dark:text-white">Analytics Cookies</h4>
+                        <p class="text-gray-600 dark:text-gray-300">Help us understand how visitors interact with our website anonymously.</p>
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Cookies We Don't Use</h3>
+                <p class="text-gray-600 dark:text-gray-300">We do NOT use advertising cookies, cross-site tracking cookies, or third-party profiling cookies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">IP Lookup Tool</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">
+                        Free IP geolocation and information checker with advanced security analysis.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Tools</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="tools.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">DNS Lookup</a></li>
+                        <li><a href="tools.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Ping Test</a></li>
+                        <li><a href="tools.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Traceroute</a></li>
+                        <li><a href="tools.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Port Checker</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="blog.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Blog</a></li>
+                        <li><a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">About</a></li>
+                        <li><a href="contact.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Contact</a></li>
+                        <li><a href="api.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">API</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+                <p class="text-center text-gray-500 dark:text-gray-400 text-sm">
+                    © 2025 IP Lookup Tool. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Address Blog - Network Security, Geolocation & Tech Guides | IP Lookup Tool</title>
+    <meta name="description" content="Learn about IP addresses, network security, geolocation technology, and digital privacy. Expert guides and tutorials for IT professionals and enthusiasts.">
+    <meta name="keywords" content="IP address blog, network security, geolocation, digital privacy, VPN, cybersecurity, networking tutorials">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <!-- Header -->
+    <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-blue-600 dark:text-blue-400">IP Lookup</h1>
+                    </div>
+                    <div class="hidden md:block ml-10">
+                        <div class="flex items-baseline space-x-4">
+                            <a href="index.html" class="text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                            <a href="tools.html" class="text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Tools</a>
+                            <a href="blog.html" class="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Blog</a>
+                            <a href="about.html" class="text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="darkModeToggle" class="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                        </svg>
+                        <svg class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Hero Section -->
+        <section class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                Network & IP Address Blog
+            </h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+                Expert insights on IP geolocation, network security, and digital privacy
+            </p>
+        </section>
+
+        <!-- Featured Post -->
+        <section class="mb-12">
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg shadow-xl p-8 text-white">
+                <div class="flex items-center mb-4">
+                    <span class="bg-white/20 px-3 py-1 rounded-full text-sm font-medium">Featured</span>
+                </div>
+                <h3 class="text-3xl font-bold mb-4">Understanding IP Geolocation: How It Works and Why It Matters</h3>
+                <p class="text-lg mb-6 text-blue-100">
+                    Dive deep into the technology behind IP geolocation, its accuracy limitations, and practical applications in modern web services.
+                </p>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm">By Admin</span>
+                        <span class="text-sm">•</span>
+                        <span class="text-sm">5 min read</span>
+                    </div>
+                    <button class="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+                        Read Article
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Posts Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <!-- Post 1 -->
+            <article class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover-lift">
+                <div class="h-48 bg-gradient-to-br from-green-400 to-blue-500"></div>
+                <div class="p-6">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 px-2 py-1 rounded text-xs font-medium">Guide</span>
+                        <span class="ml-auto text-sm text-gray-500 dark:text-gray-400">3 min read</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                        IPv4 vs IPv6: What's the Difference and Why Should You Care?
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        Learn the key differences between IPv4 and IPv6, and understand why the transition to IPv6 is crucial for the future of the internet.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-500 dark:text-gray-400">Dec 15, 2024</span>
+                        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">Read More →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Post 2 -->
+            <article class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover-lift">
+                <div class="h-48 bg-gradient-to-br from-purple-400 to-pink-500"></div>
+                <div class="p-6">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 px-2 py-1 rounded text-xs font-medium">Security</span>
+                        <span class="ml-auto text-sm text-gray-500 dark:text-gray-400">4 min read</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                        How to Detect VPN and Proxy Connections Using IP Analysis
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        Discover the techniques used to identify VPN and proxy connections through IP address analysis and why this matters for security.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-500 dark:text-gray-400">Dec 10, 2024</span>
+                        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">Read More →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Post 3 -->
+            <article class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover-lift">
+                <div class="h-48 bg-gradient-to-br from-yellow-400 to-orange-500"></div>
+                <div class="p-6">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200 px-2 py-1 rounded text-xs font-medium">Tutorial</span>
+                        <span class="ml-auto text-sm text-gray-500 dark:text-gray-400">6 min read</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                        Building Your Own IP Geolocation Service: A Complete Guide
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        Step-by-step tutorial on creating a custom IP geolocation service using open data sources and modern web technologies.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-500 dark:text-gray-400">Dec 5, 2024</span>
+                        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">Read More →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Post 4 -->
+            <article class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover-lift">
+                <div class="h-48 bg-gradient-to-br from-red-400 to-pink-500"></div>
+                <div class="p-6">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200 px-2 py-1 rounded text-xs font-medium">Privacy</span>
+                        <span class="ml-auto text-sm text-gray-500 dark:text-gray-400">5 min read</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                        Digital Privacy: How Your IP Address Reveals Your Location
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        Understand what information your IP address reveals about you and how to protect your privacy online with practical tips.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-500 dark:text-gray-400">Nov 28, 2024</span>
+                        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">Read More →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Post 5 -->
+            <article class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover-lift">
+                <div class="h-48 bg-gradient-to-br from-indigo-400 to-blue-500"></div>
+                <div class="p-6">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200 px-2 py-1 rounded text-xs font-medium">Technical</span>
+                        <span class="ml-auto text-sm text-gray-500 dark:text-gray-400">7 min read</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                        ASN and ISP Analysis: Understanding Internet Infrastructure
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        Deep dive into Autonomous System Numbers (ASNs) and how they help us understand internet routing and ISP relationships.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-500 dark:text-gray-400">Nov 20, 2024</span>
+                        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">Read More →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Post 6 -->
+            <article class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover-lift">
+                <div class="h-48 bg-gradient-to-br from-teal-400 to-cyan-500"></div>
+                <div class="p-6">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200 px-2 py-1 rounded text-xs font-medium">SEO</span>
+                        <span class="ml-auto text-sm text-gray-500 dark:text-gray-400">4 min read</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                        How IP Geolocation Impacts SEO and User Experience
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        Learn how IP-based geolocation affects search engine optimization and user experience for global websites.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-500 dark:text-gray-400">Nov 15, 2024</span>
+                        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">Read More →</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Categories Section -->
+        <section class="mb-12">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Browse by Category</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <a href="#" class="bg-white dark:bg-gray-800 rounded-lg p-4 text-center hover-lift">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-gray-900 dark:text-white">Guides</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">12 articles</p>
+                </a>
+                
+                <a href="#" class="bg-white dark:bg-gray-800 rounded-lg p-4 text-center hover-lift">
+                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-gray-900 dark:text-white">Security</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">8 articles</p>
+                </a>
+                
+                <a href="#" class="bg-white dark:bg-gray-800 rounded-lg p-4 text-center hover-lift">
+                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-gray-900 dark:text-white">Technical</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">15 articles</p>
+                </a>
+                
+                <a href="#" class="bg-white dark:bg-gray-800 rounded-lg p-4 text-center hover-lift">
+                    <div class="w-12 h-12 bg-yellow-100 dark:bg-yellow-900 rounded-lg flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-gray-900 dark:text-white">Tutorials</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">10 articles</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Newsletter Signup -->
+        <section class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg shadow-xl p-8 text-white text-center">
+            <h3 class="text-2xl font-bold mb-4">Stay Updated</h3>
+            <p class="text-blue-100 mb-6">
+                Get the latest insights on IP geolocation, network security, and digital privacy delivered to your inbox.
+            </p>
+            <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
+                <input type="email" placeholder="Enter your email" 
+                       class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white">
+                <button type="submit" 
+                        class="px-6 py-3 bg-white text-blue-600 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+                    Subscribe
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">IP Lookup Tool</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">
+                        Free IP geolocation and information checker with advanced security analysis.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Tools</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="tools.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">DNS Lookup</a></li>
+                        <li><a href="tools.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Ping Test</a></li>
+                        <li><a href="tools.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Traceroute</a></li>
+                        <li><a href="tools.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Port Checker</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="blog.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Blog</a></li>
+                        <li><a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">About</a></li>
+                        <li><a href="contact.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Contact</a></li>
+                        <li><a href="api.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">API</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="privacy.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Terms of Service</a></li>
+                        <li><a href="cookies.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+                <p class="text-center text-gray-500 dark:text-gray-400 text-sm">
+                    © 2025 IP Lookup Tool. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/app.js"></script>
+</body>
+</html>

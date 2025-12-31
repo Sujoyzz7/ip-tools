@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Tools - DNS Lookup, Ping Test, Traceroute & More | IP Lookup Tool</title>
+    <meta name="description" content="Free network tools including DNS lookup, ping test, traceroute, port checker, and user-agent analyzer. Comprehensive network diagnostic tools.">
+    <meta name="keywords" content="network tools, DNS lookup, ping test, traceroute, port checker, user agent, network diagnostics">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <!-- Header -->
+    <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-blue-600 dark:text-blue-400">IP Lookup</h1>
+                    </div>
+                    <div class="hidden md:block ml-10">
+                        <div class="flex items-baseline space-x-4">
+                            <a href="index.html" class="text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                            <a href="tools.html" class="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Tools</a>
+                            <a href="blog.html" class="text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Blog</a>
+                            <a href="about.html" class="text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="darkModeToggle" class="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                        </svg>
+                        <svg class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Hero Section -->
+        <section class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                Network Diagnostic Tools
+            </h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+                Comprehensive suite of free network tools for diagnostics and analysis
+            </p>
+        </section>
+
+        <!-- Tools Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- DNS Lookup Tool -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 hover-lift">
+                <div class="flex items-center mb-4">
+                    <div class="p-3 bg-blue-100 dark:bg-blue-900 rounded-lg">
+                        <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                        </svg>
+                    </div>
+                    <h3 class="ml-3 text-xl font-semibold text-gray-900 dark:text-white">DNS Lookup</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    Query DNS records for any domain name including A, AAAA, MX, TXT, and more.
+                </p>
+                <div class="space-y-3">
+                    <input type="text" id="dnsInput" placeholder="Enter domain (e.g., google.com)" 
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white">
+                    <button onclick="performDNSLookup()" 
+                            class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                        Lookup DNS
+                    </button>
+                </div>
+                <div id="dnsResults" class="mt-4 hidden">
+                    <!-- DNS results will be displayed here -->
+                </div>
+            </div>
+
+            <!-- Ping Test Tool -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 hover-lift">
+                <div class="flex items-center mb-4">
+                    <div class="p-3 bg-green-100 dark:bg-green-900 rounded-lg">
+                        <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="ml-3 text-xl font-semibold text-gray-900 dark:text-white">Ping Test</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    Test connectivity and measure latency to any host or IP address.
+                </p>
+                <div class="space-y-3">
+                    <input type="text" id="pingInput" placeholder="Enter host or IP (e.g., 8.8.8.8)" 
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white">
+                    <button onclick="performPingTest()" 
+                            class="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                        Start Ping
+                    </button>
+                </div>
+                <div id="pingResults" class="mt-4 hidden">
+                    <!-- Ping results will be displayed here -->
+                </div>
+            </div>
+
+            <!-- Traceroute Tool -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 hover-lift">
+                <div class="flex items-center mb-4">
+                    <div class="p-3 bg-purple-100 dark:bg-purple-900 rounded-lg">
+                        <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="ml-3 text-xl font-semibold text-gray-900 dark:text-white">Traceroute</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    Trace the network path to any destination and identify routing hops.
+                </p>
+                <div class="space-y-3">
+                    <input type="text" id="tracerouteInput" placeholder="Enter destination (e.g., google.com)" 
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white">
+                    <button onclick="performTraceroute()" 
+                            class="w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+                        Trace Route
+                    </button>
+                </div>
+                <div id="tracerouteResults" class="mt-4 hidden">
+                    <!-- Traceroute results will be displayed here -->
+                </div>
+            </div>
+
+            <!-- Port Checker Tool -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 hover-lift">
+                <div class="flex items-center mb-4">
+                    <div class="p-3 bg-red-100 dark:bg-red-900 rounded-lg">
+                        <svg class="w-6 h-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="ml-3 text-xl font-semibold text-gray-900 dark:text-white">Port Checker</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    Check if specific ports are open or closed on any host or IP address.
+                </p>
+                <div class="space-y-3">
+                    <input type="text" id="portHostInput" placeholder="Host or IP (e.g., google.com)" 
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 dark:bg-gray-700 dark:text-white">
+                    <input type="text" id="portInput" placeholder="Port (e.g., 80, 443, 22)" 
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 dark:bg-gray-700 dark:text-white">
+                    <button onclick="checkPort()" 
+                            class="w-full px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                        Check Port
+                    </button>
+                </div>
+                <div id="portResults" class="mt-4 hidden">
+                    <!-- Port check results will be displayed here -->
+                </div>
+            </div>
+
+            <!-- User-Agent Checker -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 hover-lift">
+                <div class="flex items-center mb-4">
+                    <div class="p-3 bg-yellow-100 dark:bg-yellow-900 rounded-lg">
+                        <svg class="w-6 h-6 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="ml-3 text-xl font-semibold text-gray-900 dark:text-white">User-Agent Info</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    Analyze your browser's user-agent string and get detailed browser information.
+                </p>
+                <div class="space-y-3">
+                    <button onclick="analyzeUserAgent()" 
+                            class="w-full px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors">
+                        Analyze My User-Agent
+                    </button>
+                </div>
+                <div id="userAgentResults" class="mt-4 hidden">
+                    <!-- User-Agent results will be displayed here -->
+                </div>
+            </div>
+
+            <!-- WHOIS Lookup -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 hover-lift">
+                <div class="flex items-center mb-4">
+                    <div class="p-3 bg-indigo-100 dark:bg-indigo-900 rounded-lg">
+                        <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="ml-3 text-xl font-semibold text-gray-900 dark:text-white">WHOIS Lookup</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    Get domain registration information including owner, registrar, and dates.
+                </p>
+                <div class="space-y-3">
+                    <input type="text" id="whoisInput" placeholder="Enter domain (e.g., google.com)" 
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white">
+                    <button onclick="performWHOIS()" 
+                            class="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+                        WHOIS Lookup
+                    </button>
+                </div>
+                <div id="whoisResults" class="mt-4 hidden">
+                    <!-- WHOIS results will be displayed here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Tool Information Section -->
+        <section class="mt-16">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">About Our Network Tools</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                    <h4 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Why Use Our Tools?</h4>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Free to use with no registration required</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Fast and accurate results</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Mobile-friendly responsive design</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>No software installation required</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                    <h4 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Common Use Cases</h4>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Network troubleshooting and diagnostics</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Website performance monitoring</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Security auditing and penetration testing</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Domain research and verification</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">IP Lookup Tool</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">
+                        Free IP geolocation and information checker with advanced security analysis.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Tools</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="tools.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">DNS Lookup</a></li>
+                        <li><a href="tools.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Ping Test</a></li>
+                        <li><a href="tools.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Traceroute</a></li>
+                        <li><a href="tools.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Port Checker</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="blog.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Blog</a></li>
+                        <li><a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">About</a></li>
+                        <li><a href="contact.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Contact</a></li>
+                        <li><a href="api.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">API</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="privacy.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Terms of Service</a></li>
+                        <li><a href="cookies.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+                <p class="text-center text-gray-500 dark:text-gray-400 text-sm">
+                    © 2025 IP Lookup Tool. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/tools.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
